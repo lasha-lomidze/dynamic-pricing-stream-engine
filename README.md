@@ -33,29 +33,28 @@ Production-grade DataOps/MLOps platform executing a dual-path (Lambda) data arch
 
 ## 🚀 Phase-by-Phase Implementation Roadmap
 
-### Phase 1: Ingestion Gateway (Day 1-2)
+### Phase 1: Ingestion Gateway
 * [x] Configure a single `docker-compose.yml` spinning up FastAPI, Kafka.
 * [ ] Create a Python telemetry script simulating continuous user location and ride requests.
 * [ ] Build a FastAPI route utilizing Pydantic models to reject malformed event data before hitting Kafka.
 
-### Phase 2: Dual-Path Processing (Day 3-5)
+### Phase 2: Dual-Path Processing
 * [ ] Write a PySpark script to capture Kafka streams and write real-time demand metrics to Redis.
 * [ ] Dump raw stream data to local storage using Parquet/Delta format.
 * [ ] Build a dbt SQL schedule to compute 30-day user/location baseline historical averages.
 
-### Phase 3: Serving & ML Inference (Day 6-8)
+### Phase 3: Serving & ML Inference
 * [ ] Train an XGBoost model on historical demand vectors; log parameters and model binaries with MLflow.
 * [ ] Create a production FastAPI inference server endpoint.
 * [ ] Enforce data architecture: Inference server reads inputs ──► pulls live state from Redis ──► scores model ──► returns dynamic price.
 
-### Phase 4: Production Hygiene & Hardening (Day 9-10)
+### Phase 4: Production Hygiene & Hardening
 * [ ] Integrate data quality checks via Great Expectations / Soda during data transformations.
 * [ ] Instrument FastAPI apps with Prometheus metrics.
 * [ ] Stand up a Grafana dashboard monitoring API latency, request rates, and model output drift.
 
 ---
 
-## 🎯 Resume Highlights Built from This Project
 * Engineered a decoupled, microservices-based streaming data pipeline handling structured event logging using **FastAPI** and **Apache Kafka**.
 * Implemented a **Lambda Architecture** utilizing **PySpark Streaming** for real-time window calculations alongside **dbt** for historical batch transformations.
 * Reduced feature serving latency to sub-10ms by designing a unified feature look-up cache utilizing **Redis**.
