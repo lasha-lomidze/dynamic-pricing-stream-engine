@@ -1,0 +1,44 @@
+# --- Virtual Environments & Dependencies ---
+venv/
+.venv/
+env/
+.env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.whl
+*.egg-info/
+
+# --- Version Control & CI ---
+.git/
+.gitignore
+.gitattributes
+
+# --- Environment & Secret Files (CRITICAL) ---
+.env
+.env.*
+*.pem
+*.key
+credentials/
+secrets/
+
+# --- IDEs & OS Files ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Logs & Test Artifacts ---
+*.log
+logs/
+htmlcov/
+.coverage
+.pytest_cache/
+
+# --- Docker Files (prevents recursion) ---
+Dockerfile*
+docker-compose*
+.docker/

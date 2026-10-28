@@ -34,7 +34,7 @@ Production-grade DataOps/MLOps platform executing a dual-path (Lambda) data arch
 ## 🚀 Phase-by-Phase Implementation Roadmap
 
 ### Phase 1: Ingestion Gateway (Day 1-2)
-* [ ] Configure a single `docker-compose.yml` spinning up FastAPI, Kafka, and Zookeeper.
+* [x] Configure a single `docker-compose.yml` spinning up FastAPI, Kafka.
 * [ ] Create a Python telemetry script simulating continuous user location and ride requests.
 * [ ] Build a FastAPI route utilizing Pydantic models to reject malformed event data before hitting Kafka.
 
