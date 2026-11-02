@@ -12,3 +12,21 @@ redis
 promotheus
 grafana
 
+
+
+
+================== api endpoints
+
+user enpoints =>
+post: register a user
+post: request a ride
+get: get the status (location, etc) of a ride
+get: estimate prices
+delete: cancel a request
+
+driver endpoints =>
+post: register a driver
+post: accept a ride
+get: get location of user
+delete: cancel a ride
+delete: deny a ride

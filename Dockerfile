@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py .
 
 # 6. Runtime Command (Launches your server on container startup)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
