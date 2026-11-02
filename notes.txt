@@ -1,0 +1,14 @@
+
+================= tools used 
+fast api
+pydantic
+
+docker
+cocker compose
+
+kafka
+pySpark
+redis
+promotheus
+grafana
+
