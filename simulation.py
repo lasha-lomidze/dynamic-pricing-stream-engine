@@ -1,6 +1,7 @@
 import random
 import time 
 import requests
+from enum import StrEnum
 
 # ==========================================
 # DOCKER-READY NETWORK CONFIGURATION
@@ -33,8 +34,25 @@ ROUTES = {
 }
 
 
+
+# ^ CONSTANTS AND CONFIGURATION
+
 ONLINE_USER_COUNT = 10
 ONLINE_DRIVER_COUNT = 10
+DRIVE_TYPES = ["economy", "premium"]
+
+class DriveTier(StrEnum):
+    ECONOMY = "economy"
+    PREMIUM = "premium"
+
+drive_tier_weights = {
+    DriveTier.ECONOMY: 0.7,
+    DriveTier.PREMIUM: 0.3
+}
+
+
+
+# ^ HELPER FUNCTIONS
 
 def random_user_id():
     return random.randint(1, ONLINE_USER_COUNT)
@@ -42,36 +60,48 @@ def random_user_id():
 def random_driver_id():
     return random.randint(1, ONLINE_DRIVER_COUNT)
 
+def create_random_user():
+    uid = random_user_id()
+    return {"name": f"user_{uid}", "email": f"user_{uid}@example.com"}
+
+def create_random_driver():
+    did = random_driver_id()
+    return {"name": f"driver_{did}", "email": f"driver_{did}@example.com"}
+
 def random_api_call():
     api_calls = list(ROUTES.keys())
     return random.choice(api_calls)
 
-def simulation():
-    while True:
-        time.sleep(10 / (ONLINE_USER_COUNT + ONLINE_DRIVER_COUNT/2))
 
-        api_call = random_api_call()
-        if api_call == "add_user":
-            ROUTES["add_user"]({"name": f"user_{random.randint(1, ONLINE_USER_COUNT)}", "email": f"user_{random.randint(1, ONLINE_USER_COUNT)}@example.com"})
-        elif api_call == "add_driver":
-            ROUTES["add_driver"]({"name": f"driver_{random.randint(1, ONLINE_DRIVER_COUNT)}", "email": f"driver_{random.randint(1, ONLINE_DRIVER_COUNT)}@example.com"})
-        elif api_call == "get_user":
-            ROUTES["get_user"](random_user_id())
-        elif api_call == "get_driver":
-            ROUTES["get_driver"](random_driver_id())
-        elif api_call == "estimate":
-            ROUTES["estimate"](f"pickup_{random.randint(1, 100)}", f"dropoff_{random.randint(1, 100)}")
-        elif api_call == "request":
-            ROUTES["request"]({"user_id": random_user_id(), "pickup": f"pickup_{random.randint(1, 100)}", "dropoff": f"dropoff_{random.randint(1, 100)}"})
-        elif api_call == "list":
-            ROUTES["list"]()
-        elif api_call == "status":
-            ROUTES["status"](random.randint(1, 100))
-        elif api_call == "cancel":
-            ROUTES["cancel"](random.randint(1, 100))
-        elif api_call == "accept":
-            ROUTES["accept"](random.randint(1, 100), random_driver_id())
-        elif api_call == "deny":
-            ROUTES["deny"](random.randint(1, 100))
 
-simulation()
+# ^ SIMULATION FUNCTION
+
+# def simulation():
+#     while True:
+#         time.sleep(10 / (ONLINE_USER_COUNT + ONLINE_DRIVER_COUNT/2))
+
+#         api_call = random_api_call()
+#         if api_call == "add_user":
+#             ROUTES["add_user"]({"name": f"user_{random.randint(1, ONLINE_USER_COUNT)}", "email": f"user_{random.randint(1, ONLINE_USER_COUNT)}@example.com"})
+#         elif api_call == "add_driver":
+#             ROUTES["add_driver"]({"name": f"driver_{random.randint(1, ONLINE_DRIVER_COUNT)}", "email": f"driver_{random.randint(1, ONLINE_DRIVER_COUNT)}@example.com"})
+#         elif api_call == "get_user":
+#             ROUTES["get_user"](random_user_id())
+#         elif api_call == "get_driver":
+#             ROUTES["get_driver"](random_driver_id())
+#         elif api_call == "estimate":
+#             ROUTES["estimate"](f"pickup_{random.randint(1, 100)}", f"dropoff_{random.randint(1, 100)}")
+#         elif api_call == "request":
+#             ROUTES["request"]({"user_id": random_user_id(), "pickup": f"pickup_{random.randint(1, 100)}", "dropoff": f"dropoff_{random.randint(1, 100)}"})
+#         elif api_call == "list":
+#             ROUTES["list"]()
+#         elif api_call == "status":
+#             ROUTES["status"](random.randint(1, 100))
+#         elif api_call == "cancel":
+#             ROUTES["cancel"](random.randint(1, 100))
+#         elif api_call == "accept":
+#             ROUTES["accept"](random.randint(1, 100), random_driver_id())
+#         elif api_call == "deny":
+#             ROUTES["deny"](random.randint(1, 100))
+
+# simulation()
