@@ -1,4 +1,6 @@
-from pydantic import BaseModel
+from shared.schema import BaseModel
+
+# ^ pydantic-like schema 
 
 class Location(BaseModel):
     latitude: float
@@ -12,3 +14,11 @@ class Driver(BaseModel):
     id: int
     location: Location
     drive_tier: str
+
+# ^ enums and other 
+
+from enum import StrEnum
+
+class DriveTier(StrEnum):
+    ECONOMY = "economy"
+    PREMIUM = "premium"

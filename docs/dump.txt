@@ -1,0 +1,7 @@
+# ==========================================
+# DOCKER-READY NETWORK CONFIGURATION
+# ==========================================
+# Inside Docker Compose, containers communicate using the service name as the domain name.
+# We default to 'http://web:8000' but fall back to localhost if running outside Docker.
+# Using a Session is the industry standard for performance.
+# It reuses the underlying TCP connection across all your route calls.
